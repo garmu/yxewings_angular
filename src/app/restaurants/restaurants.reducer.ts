@@ -1,39 +1,36 @@
 import * as actions from './restaurants.actions';
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
+    import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createFeatureSelector, State } from '@ngrx/store';
 import { Restaurant } from './restaurant';
 
-export const restaurantAdapter = createEntityAdapter<Restaurant>();
+export interface RestaurantState {
+    loading: boolean; // indicates loading while fetching data
+    restaurants: Restaurant[];
+  }
 
-export interface RestaurantState extends EntityState<Restaurant> { }
-
-const defaultRestaurants = null;
-
-export const initialState: RestaurantState = restaurantAdapter.getInitialState(defaultRestaurants);
-
+const defaultRestaurants: RestaurantState = {
+    loading: false,
+    restaurants: null
+};
 
 export function restaurantsReducer(
-    state: RestaurantState = initialState,
-    action: actions.RestaurantsActions) {
+    state: RestaurantState = defaultRestaurants,
+    action: actions.RestaurantsActions): RestaurantState {
 
     switch (action.type) {
-        case actions.FETCH:
-            return restaurantAdapter.getInitialState();
-
-        case actions.FETCH_SUCCESS:
-            return restaurantAdapter.addMany(action.payload, state);
-
+        case actions.FETCH: {
+            return {
+                ...state,
+                loading: true
+            };
+        }
+        case actions.FETCH_SUCCESS: {
+            return {
+                restaurants: action.payload,
+                loading: false
+            };
+        }
         default:
             return state;
     }
 }
-
-export const getRestaurantState = createFeatureSelector<RestaurantState>('restaurants');
-
-export const {
-    selectIds: selectUserIds,
-    selectEntities: selectRestaurantEntities,
-    selectAll: selectAllRestaurants,
-    selectTotal: selectRestaurantTotal
-  } = restaurantAdapter.getSelectors(getRestaurantState);
-

@@ -9,9 +9,12 @@
     <button mat-button (click)="selectSunday()" [disabled]="isSunday$ | async">Sunday</button>
 </mat-toolbar>
 <mat-card>
-    <ng-container *ngFor="let restaurant of restaurants$ | async">
-        <app-restaurant-card [restaurant]='restaurant' [selectedDay]=' selectedDay$ | async'>
-        </app-restaurant-card>
+    <ng-container *ngIf="(restaurants$ | async) as restaurants">
+        <ng-container *ngFor="let restaurant of restaurants">
+            <app-restaurant-card [restaurant]='restaurant' [selectedDay]=' selectedDay$ | async'>
+            </app-restaurant-card>
+        </ng-container>
     </ng-container>
+
 </mat-card>
 
