@@ -44,7 +44,7 @@ export function restaurantsReducer(
             };
         }
         case actions.SELECT_DAY: {
-            const filteredRestaurants: Restaurant[] = filterByDay(state.allRestaurants, state.day);
+            const filteredRestaurants: Restaurant[] = filterByDay(state.allRestaurants, action.payload);
             const viewRestaurants: ViewRestaurant[] = filteredRestaurants
                 .map(restaurant => new ViewRestaurant({
                     id: restaurant.id,
