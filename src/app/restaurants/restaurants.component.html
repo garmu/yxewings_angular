@@ -1,0 +1,5 @@
+
+<mat-card *ngFor="let restaurant of restaurants$ | async">
+    <app-restaurant-card [restaurant]='restaurant'>
+    </app-restaurant-card>
+</mat-card>

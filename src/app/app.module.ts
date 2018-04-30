@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { TitleBarModule } from './title-bar/title-bar.module';
+import { TitleBarModule } from './title-bar/index';
+import { RestaurantsModule } from './restaurants/index';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { TitleBarModule } from './title-bar/title-bar.module';
   ],
   imports: [
     BrowserModule,
-    TitleBarModule
+    TitleBarModule,
+    RestaurantsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
