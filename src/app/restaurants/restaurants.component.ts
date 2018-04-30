@@ -1,4 +1,4 @@
-import { Restaurant, Day } from './restaurant';
+import { Day, ViewRestaurant } from './restaurant';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -6,10 +6,7 @@ import { map, shareReplay, take, first } from 'rxjs/operators';
 import * as actions from './restaurants.actions';
 import * as reducer from './restaurants.reducer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-interface RestaurantState {
-    restaurants: Restaurant[];
-}
+import { SelectDay } from './restaurants.actions';
 
 @Component({
     selector: 'app-restaurants',
@@ -19,8 +16,7 @@ interface RestaurantState {
 export class RestaurantsComponent {
 
     public isLoading$: Observable<boolean>;
-    public restaurants$: Observable<Restaurant[]>;
-    public selectedDay$: BehaviorSubject<Day>;
+    public restaurants$: Observable<ViewRestaurant[]>;
     public isMonday$: Observable<boolean>;
     public isTuesday$: Observable<boolean>;
     public isWednesday$: Observable<boolean>;
@@ -30,53 +26,57 @@ export class RestaurantsComponent {
     public isSunday$: Observable<boolean>;
 
     constructor(private store: Store<any>) {
-        this.selectedDay$ = new BehaviorSubject(Day.Monday);
-        this.restaurants$ = this.store.select('restaurants').pipe(
-            map((state: reducer.RestaurantState) => state.restaurants)
+
+        const state$ = this.store.select('restaurants');
+
+        this.restaurants$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.viewRestaurants)
         );
+
+        this.isMonday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Monday)
+        );
+        this.isTuesday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Tuesday)
+        );
+        this.isWednesday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Wednesday)
+        );
+        this.isThursday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Thursday)
+        );
+        this.isFriday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Friday)
+        );
+        this.isSaturday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Saturday)
+        );
+        this.isSunday$ = state$.pipe(
+            map((state: reducer.RestaurantState) => state.day === Day.Sunday)
+        );
+
         this.store.dispatch(new actions.Fetch());
-        this.isMonday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Monday)
-        );
-        this.isTuesday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Tuesday)
-        );
-        this.isWednesday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Wednesday)
-        );
-        this.isThursday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Thursday)
-        );
-        this.isFriday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Friday)
-        );
-        this.isSaturday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Saturday)
-        );
-        this.isSunday$ = this.selectedDay$.pipe(
-            map(selectedDay => selectedDay === Day.Sunday)
-        );
     }
 
     public selectMonday(): void {
-        this.selectedDay$.next(Day.Monday);
+        this.store.dispatch(new SelectDay(Day.Monday));
     }
     public selectTuesday(): void {
-        this.selectedDay$.next(Day.Tuesday);
+        this.store.dispatch(new SelectDay(Day.Tuesday));
     }
     public selectWednesday(): void {
-        this.selectedDay$.next(Day.Wednesday);
+        this.store.dispatch(new SelectDay(Day.Wednesday));
     }
     public selectThursday(): void {
-        this.selectedDay$.next(Day.Thursday);
+        this.store.dispatch(new SelectDay(Day.Thursday));
     }
     public selectFriday(): void {
-        this.selectedDay$.next(Day.Friday);
+        this.store.dispatch(new SelectDay(Day.Friday));
     }
     public selectSaturday(): void {
-        this.selectedDay$.next(Day.Saturday);
+        this.store.dispatch(new SelectDay(Day.Saturday));
     }
     public selectSunday(): void {
-        this.selectedDay$.next(Day.Sunday);
+        this.store.dispatch(new SelectDay(Day.Sunday));
     }
 }

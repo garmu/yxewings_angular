@@ -1,4 +1,20 @@
 
+export class ViewRestaurant {
+    id: string;
+    info: RestaurantInfo;
+    specials: string[];
+    constructor(data: ViewRestaurantInterface) {
+        this.id = data.id;
+        this.info = new RestaurantInfo(data.info);
+        this.specials = data.specials;
+    }
+}
+
+export interface ViewRestaurantInterface {
+    id: string;
+    info: RestaurantInfo;
+    specials: string[];
+}
 
 export class Restaurant {
     id: string;
@@ -44,6 +60,58 @@ export class WeeklySpecialsContainer {
         this.fridaySpecials = data.Friday ? Object.values(data.Friday).map(field => field) : null;
         this.saturdaySpecials = data.Saturday ? Object.values(data.Saturday).map(field => field) : null;
         this.sundaySpecials = data.Sunday ? Object.values(data.Sunday).map(field => field) : null;
+    }
+
+    public static hasSpecialsForDay(container: WeeklySpecialsContainer, day: Day): boolean {
+        switch (day) {
+            case (Day.Monday): {
+                return container.mondaySpecials ? true : false;
+            }
+            case (Day.Tuesday): {
+                return container.tuesdaySpecials ? true : false;
+            }
+            case (Day.Wednesday): {
+                return container.wednesdaySpecials ? true : false;
+            }
+            case (Day.Thursday): {
+                return container.thursdaySpecials ? true : false;
+            }
+            case (Day.Friday): {
+                return container.fridaySpecials ? true : false;
+            }
+            case (Day.Saturday): {
+                return container.saturdaySpecials ? true : false;
+            }
+            case (Day.Sunday): {
+                return container.sundaySpecials ? true : false;
+            }
+        }
+    }
+
+    public static getSpecialsForDay(container: WeeklySpecialsContainer, day: Day): string[] {
+        switch (day) {
+            case (Day.Monday): {
+                return container.mondaySpecials;
+            }
+            case (Day.Tuesday): {
+                return container.tuesdaySpecials;
+            }
+            case (Day.Wednesday): {
+                return container.wednesdaySpecials;
+            }
+            case (Day.Thursday): {
+                return container.wednesdaySpecials;
+            }
+            case (Day.Friday): {
+                return container.wednesdaySpecials;
+            }
+            case (Day.Saturday): {
+                return container.wednesdaySpecials;
+            }
+            case (Day.Sunday): {
+                return container.wednesdaySpecials;
+            }
+        }
     }
 }
 

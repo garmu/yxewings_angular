@@ -1,68 +1,8 @@
-<ng-container *ngIf="isMonday() && restaurant.weeklySpecialsContainer.mondaySpecials">
+<ng-container *ngIf="restaurant.specials">
     <mat-card>
         <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
         <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.mondaySpecials">
-                    <span>{{dailySpecial}}</span>
-                </div>
-        </mat-card-content>
-    </mat-card>
-</ng-container>
-<ng-container *ngIf="isTuesday() && restaurant.weeklySpecialsContainer.tuesdaySpecials">
-    <mat-card>
-        <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
-        <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.tuesdaySpecials">
-                    <span>{{dailySpecial}}</span>
-                </div>
-        </mat-card-content>
-    </mat-card>
-</ng-container>
-<ng-container *ngIf="isWednesday() && restaurant.weeklySpecialsContainer.wednesdaySpecials">
-    <mat-card>
-        <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
-        <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.wednesdaySpecials">
-                    <span>{{dailySpecial}}</span>
-                </div>
-        </mat-card-content>
-    </mat-card>
-</ng-container>
-<ng-container *ngIf="isThursday() && restaurant.weeklySpecialsContainer.thursdaySpecials">
-    <mat-card>
-        <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
-        <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.thursdaySpecials">
-                    <span>{{dailySpecial}}</span>
-                </div>
-        </mat-card-content>
-    </mat-card>
-</ng-container>
-<ng-container *ngIf="isFriday() && restaurant.weeklySpecialsContainer.fridaySpecials">
-    <mat-card>
-        <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
-        <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.fridaySpecials">
-                    <span>{{dailySpecial}}</span>
-                </div>
-        </mat-card-content>
-    </mat-card>
-</ng-container>
-<ng-container *ngIf="isSaturday() && restaurant.weeklySpecialsContainer.saturdaySpecials">
-    <mat-card>
-        <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
-        <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.saturdaySpecials">
-                    <span>{{dailySpecial}}</span>
-                </div>
-        </mat-card-content>
-    </mat-card>
-</ng-container>
-<ng-container *ngIf="isSunday() && restaurant.weeklySpecialsContainer.sundaySpecials">
-    <mat-card>
-        <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
-        <mat-card-content>
-                <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.sundaySpecials">
+                <div *ngFor="let dailySpecial of restaurant.specials">
                     <span>{{dailySpecial}}</span>
                 </div>
         </mat-card-content>

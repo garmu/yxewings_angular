@@ -11,7 +11,7 @@
 <mat-card>
     <ng-container *ngIf="(restaurants$ | async) as restaurants">
         <ng-container *ngFor="let restaurant of restaurants">
-            <app-restaurant-card [restaurant]='restaurant' [selectedDay]=' selectedDay$ | async'>
+            <app-restaurant-card [restaurant]='restaurant'>
             </app-restaurant-card>
         </ng-container>
     </ng-container>
