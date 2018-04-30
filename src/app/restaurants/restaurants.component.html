@@ -1,4 +1,6 @@
-
+<mat-toolbar color="primary">
+    <span>🍽️ YXE Specials 🍽️</span>
+</mat-toolbar>
 <mat-card *ngFor="let restaurant of restaurants$ | async">
     <app-restaurant-card [restaurant]='restaurant'>
     </app-restaurant-card>

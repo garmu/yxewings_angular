@@ -1,8 +1,11 @@
 <mat-card>
     <mat-card-title class="restaurant-title">{{restaurant.info.name}}</mat-card-title>
     <mat-card-content>
-        <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.mondaySpecials.specials">
-            <span>{{dailySpecial}}</span>
-        </div>
+        <ng-container *ngIf="restaurant.weeklySpecialsContainer.mondaySpecials">
+            <div *ngFor="let dailySpecial of restaurant.weeklySpecialsContainer.mondaySpecials">
+                <span>{{dailySpecial}}</span>
+            </div>
+
+        </ng-container>
     </mat-card-content>
 </mat-card>

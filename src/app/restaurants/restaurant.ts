@@ -30,27 +30,22 @@ export class RestaurantInfo {
 }
 
 export class WeeklySpecialsContainer {
-    mondaySpecials: DailySpecials;
-    tuesdaySpecials: DailySpecials;
-    wednesdaySpecials: DailySpecials;
-    thursdaySpecials: DailySpecials;
-    fridaySpecials: DailySpecials;
-    saturdaySpecials: DailySpecials;
-    sundaySpecials: DailySpecials;
+    mondaySpecials: string[];
+    tuesdaySpecials: string[];
+    wednesdaySpecials: string[];
+    thursdaySpecials: string[];
+    fridaySpecials: string[];
+    saturdaySpecials: string[];
+    sundaySpecials: string[];
     constructor(data: any) {
-        this.mondaySpecials = new DailySpecials(data.Monday);
-        this.tuesdaySpecials = data.Tuesday;
-        this.wednesdaySpecials = data.Wednesday;
-        this.thursdaySpecials = data.Thursday;
-        this.fridaySpecials = data.Friday;
-        this.saturdaySpecials = data.Saturday;
-        this.sundaySpecials = data.Sunday;
+        this.mondaySpecials = data.Monday ? Object.values(data).map(field => field.special1) : null;
+        this.tuesdaySpecials = data.Tuesday ? Object.values(data).map(field => field.special1) : null;
+        this.wednesdaySpecials = data.Wednesday ? Object.values(data).map(field => field.special1) : null;
+        this.thursdaySpecials = data.Thursday ? Object.values(data).map(field => field.special1) : null;
+        this.fridaySpecials = data.Friday ? Object.values(data).map(field => field.special1) : null;
+        this.saturdaySpecials = data.Saturday ? Object.values(data).map(field => field.special1) : null;
+        this.sundaySpecials = data.Sunday ? Object.values(data).map(field => field.special1) : null;
     }
 }
 
-export class DailySpecials {
-    specials: string[];
-    constructor (data: any) {
-        this.specials = data ? Object.values(data).map(field => field) : null;
-    }
-}
+

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { TitleBarModule } from './title-bar/index';
 import { RestaurantsModule } from './restaurants/index';
 
 
@@ -13,7 +12,6 @@ import { RestaurantsModule } from './restaurants/index';
   ],
   imports: [
     BrowserModule,
-    TitleBarModule,
     RestaurantsModule
   ],
   providers: [],
