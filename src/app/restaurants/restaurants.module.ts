@@ -8,7 +8,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { restaurantsReducer } from './restaurants.reducer';
 import { RestaurantEffects } from './restaurants.effects';
 import { RestaurantsComponent } from './restaurants.component';
-import { MatCardModule, MatToolbarModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatToolbarModule,
+  MatButtonModule,
+} from '@angular/material';
 import { RestaurantCardComponent } from './restaurant-card.component';
 
 const FIREBASE_CREDENTIALS = {
@@ -28,7 +32,8 @@ const FIREBASE_CREDENTIALS = {
     StoreModule.forRoot({restaurants: restaurantsReducer}),
     EffectsModule.forRoot([RestaurantEffects]),
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule
   ],
   declarations: [RestaurantsComponent, RestaurantCardComponent],
   exports: [RestaurantsComponent, RestaurantCardComponent],

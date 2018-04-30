@@ -1,7 +1,17 @@
 <mat-toolbar color="primary">
     <span>🍽️ YXE Specials 🍽️</span>
+    <button mat-button (click)="selectMonday()" [disabled]="isMonday$ | async">Monday</button>
+    <button mat-button (click)="selectTuesday()" [disabled]="isTuesday$ | async">Tuesday</button>
+    <button mat-button (click)="selectWednesday()" [disabled]="isWednesday$ | async">Wednesday</button>
+    <button mat-button (click)="selectThursday()" [disabled]="isThursday$ | async">Thursday</button>
+    <button mat-button (click)="selectFriday()" [disabled]="isFriday$ | async">Friday</button>
+    <button mat-button (click)="selectSaturday()" [disabled]="isSaturday$ | async">Saturday</button>
+    <button mat-button (click)="selectSunday()" [disabled]="isSunday$ | async">Sunday</button>
 </mat-toolbar>
-<mat-card *ngFor="let restaurant of restaurants$ | async">
-    <app-restaurant-card [restaurant]='restaurant'>
-    </app-restaurant-card>
+<mat-card>
+    <ng-container *ngFor="let restaurant of restaurants$ | async">
+        <app-restaurant-card [restaurant]='restaurant' [selectedDay]=' selectedDay$ | async'>
+        </app-restaurant-card>
+    </ng-container>
 </mat-card>
+

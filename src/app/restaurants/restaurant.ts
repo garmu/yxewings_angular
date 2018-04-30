@@ -1,6 +1,5 @@
 
 
-
 export class Restaurant {
     id: string;
     ref: string;
@@ -38,14 +37,23 @@ export class WeeklySpecialsContainer {
     saturdaySpecials: string[];
     sundaySpecials: string[];
     constructor(data: any) {
-        this.mondaySpecials = data.Monday ? Object.values(data).map(field => field.special1) : null;
-        this.tuesdaySpecials = data.Tuesday ? Object.values(data).map(field => field.special1) : null;
-        this.wednesdaySpecials = data.Wednesday ? Object.values(data).map(field => field.special1) : null;
-        this.thursdaySpecials = data.Thursday ? Object.values(data).map(field => field.special1) : null;
-        this.fridaySpecials = data.Friday ? Object.values(data).map(field => field.special1) : null;
-        this.saturdaySpecials = data.Saturday ? Object.values(data).map(field => field.special1) : null;
-        this.sundaySpecials = data.Sunday ? Object.values(data).map(field => field.special1) : null;
+        this.mondaySpecials = data.Monday ? Object.values(data.Monday).map(field => field) : null;
+        this.tuesdaySpecials = data.Tuesday ? Object.values(data.Tuesday).map(field => field) : null;
+        this.wednesdaySpecials = data.Wednesday ? Object.values(data.Wednesday).map(field => field) : null;
+        this.thursdaySpecials = data.Thursday ? Object.values(data.Thursday).map(field => field) : null;
+        this.fridaySpecials = data.Friday ? Object.values(data.Friday).map(field => field) : null;
+        this.saturdaySpecials = data.Saturday ? Object.values(data.Saturday).map(field => field) : null;
+        this.sundaySpecials = data.Sunday ? Object.values(data.Sunday).map(field => field) : null;
     }
 }
 
+export enum Day {
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
+}
 
