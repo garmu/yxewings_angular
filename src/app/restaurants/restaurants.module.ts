@@ -15,6 +15,8 @@ import {
   MatProgressSpinnerModule,
 } from '@angular/material';
 import { RestaurantCardComponent } from './restaurant-card.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../../environments/environment';
 
 const FIREBASE_CREDENTIALS = {
     apiKey: 'AIzaSyDSOYxOY6c4whg46sRaKaP-3BuCzX51l4E',
@@ -31,6 +33,10 @@ const FIREBASE_CREDENTIALS = {
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
     AngularFireDatabaseModule,
     StoreModule.forRoot({restaurants: restaurantsReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     EffectsModule.forRoot([RestaurantEffects]),
     MatCardModule,
     MatToolbarModule,

@@ -32,11 +32,9 @@ export class RestaurantsComponent {
         this.restaurants$ = state$.pipe(
             map((state: reducer.RestaurantState) => state.viewRestaurants)
         );
-
         this.isLoading$ = state$.pipe(
             map((state: reducer.RestaurantState) => state.loading)
         );
-
         this.isMonday$ = state$.pipe(
             map((state: reducer.RestaurantState) => state.day === Day.Monday)
         );
