@@ -12,6 +12,7 @@ import {
   MatCardModule,
   MatToolbarModule,
   MatButtonModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 import { RestaurantCardComponent } from './restaurant-card.component';
 
@@ -33,7 +34,8 @@ const FIREBASE_CREDENTIALS = {
     EffectsModule.forRoot([RestaurantEffects]),
     MatCardModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   declarations: [RestaurantsComponent, RestaurantCardComponent],
   exports: [RestaurantsComponent, RestaurantCardComponent],
